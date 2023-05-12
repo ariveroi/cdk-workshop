@@ -1,3 +1,4 @@
+import { RemovalPolicy } from "aws-cdk-lib";
 import {
   AttributeType,
   Table,
@@ -40,6 +41,7 @@ export class HitCounter extends Construct {
       },
       encryption: TableEncryption.AWS_MANAGED,
       readCapacity: props.readCapacity ?? 5,
+      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     this.handler = new Function(this, "HitCounterHandler", {
